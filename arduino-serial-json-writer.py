@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os, sys, json, subprocess, shlex, serial, time, queue, threading
 
+DEBUG_MODE = False
 JOYSTICK_JSON_COMMAND = './joystick-json'
 port = '/dev/tty.usbserial-A601EGHU'
 
@@ -20,7 +21,8 @@ def worker():
         qty = qty+1
         t = q.get()
         ser.write(t)
-        if (qty % 10) == 0:
+        if DEBUG_MODE:
+         if (qty % 10) == 0:
           print(t)
         q.task_done()
 
