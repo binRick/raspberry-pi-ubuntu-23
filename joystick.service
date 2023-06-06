@@ -1,0 +1,15 @@
+[Unit]
+Description=Joystick
+After=getty.target
+Conflicts=getty@tty1.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/root/raspberry-pi-ubuntu-23/arduino-serial-json-writer.py
+StandardInput=tty-force
+StandardOutput=inherit
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target
